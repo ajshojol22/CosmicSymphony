@@ -1,5 +1,8 @@
 package com.jol.cosmicsymphony;
 
+import static com.jol.cosmicsymphony.Constants.waterBodiesInfoList;
+
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    List<WaterBodiesInfo> waterBodiesInfoList = new ArrayList<>();
+
     List<String> lakeNameList = new ArrayList<>();
     ActivityMainBinding binding;
     MapboxMap mapboxMap;
@@ -172,11 +175,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateData() {
-
-
         for (WaterBodiesInfo info : waterBodiesInfoList) {
+            int position=waterBodiesInfoList.indexOf(info);
             String waterBodyName = lakeNameList.get(waterBodiesInfoList.indexOf(info));
-
             Log.wtf("Water Body:", waterBodyName);
             double latitude = info.getWater_bodies().get(lakeNameList.get(waterBodiesInfoList.indexOf(info))).getLocation().getLat();
             double longitude = info.getWater_bodies().get(lakeNameList.get(waterBodiesInfoList.indexOf(info))).getLocation().getLng();
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     .withTextHaloWidth(10)
                     .withTextHaloBlur(25)
                     .withPoint(point);
+            
 
             AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(binding.mapView);
             PointAnnotationManager manager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, new AnnotationConfig());
@@ -200,13 +202,18 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onAnnotationClick(@NonNull PointAnnotation pointAnnotation) {
                     Log.wtf("Clicked", pointAnnotation.getTextField());
-                    Toast.makeText(MainActivity.this, pointAnnotation.getTextField(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent=new Intent(MainActivity.this, WaterBodyActivity.class);
+                    intent.putExtra("lakeTitle",waterBodyName);
+                    intent.putExtra("position",position);
+                    startActivity(intent);
+
                     return false;
                 }
             });
 
             CameraAnimationsPlugin camera = CameraAnimationsUtils.getCamera(binding.mapView);
-            camera.easeTo(
+            camera.flyTo(
                     new CameraOptions.Builder()
                             .zoom(currentZoom)
                             .center(point)

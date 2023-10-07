@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaterBodyActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="#7CDAD7">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_22sdp"
+            tools:text="Mississippi River" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        app:cardCornerRadius="@dimen/_20sdp"
+        android:minHeight="@dimen/_50sdp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Water Quality"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp" />
+<ImageView
+    android:id="@+id/dropDown"
+    android:layout_alignParentEnd="true"
+    android:layout_centerVertical="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:src="@drawable/baseline_expand_more_24"
+    android:layout_width="@dimen/_20sdp"
+    android:layout_height="@dimen/_20sdp"/>
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp">
+
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Icon"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <TextView
+                    android:id="@+id/value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Value"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:src="@drawable/temp" />
+
+                <TextView
+                    android:id="@+id/tempValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:src="@drawable/ph" />
+
+                <TextView
+                    android:id="@+id/phValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:src="@drawable/do_level" />
+
+                <TextView
+                    android:id="@+id/doValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/conductivity" />
+
+                <TextView
+                    android:id="@+id/conductanceValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:src="@drawable/turbid" />
+
+                <TextView
+                    android:id="@+id/turbidityValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+            </TableRow>
+        </TableLayout>
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/endangeredSpec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="Endangered Species"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18sdp" />
+
+    <com.github.islamkhsh.CardSliderViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:auto_slide_time="5"
+        android:layout_below="@id/endangeredSpec"
+        app:cardSlider_indicator="@id/indicator"
+        app:cardSlider_otherPagesWidth="24dp"
+        app:cardSlider_pageMargin="12dp"
+        app:cardSlider_smallAlphaFactor="0.5"
+        app:cardSlider_smallScaleFactor="0.9"
+
+        />
+
+
+    <com.github.islamkhsh.CardSliderIndicator
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewPager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        app:indicatorsToShow="5" />
+
+
+</RelativeLayout>

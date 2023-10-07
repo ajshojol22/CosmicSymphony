@@ -45,5 +45,9 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.1.0'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
 
 }
