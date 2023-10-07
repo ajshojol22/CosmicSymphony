@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                         .build(),
                 new MapAnimationOptions.Builder()
                         .interpolator(new AccelerateDecelerateInterpolator())
-                        .duration(1000).build()
+                        .duration(1100).build()
         );
     }
 
