@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cosmic Symphony</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYWpzaG9qb2wzNjAiLCJhIjoiY2xtdXZxZHNnMGdscjJxcGVsZXdhcGZlNCJ9.rVQNmDd8SFau5kR6NaxC0w</string>
+
+</resources>

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "936722202323",
+    "firebase_url": "https://cosmic-symphony-default-rtdb.firebaseio.com",
+    "project_id": "cosmic-symphony",
+    "storage_bucket": "cosmic-symphony.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936722202323:android:1e844a97012aeae38a5e26",
+        "android_client_info": {
+          "package_name": "com.jol.cosmicsymphony"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlRAigVn3XNy3Cci7kiqgsoQsd9atiq_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
