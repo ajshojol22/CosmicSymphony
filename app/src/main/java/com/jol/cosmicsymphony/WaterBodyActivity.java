@@ -51,6 +51,26 @@ public class WaterBodyActivity extends AppCompatActivity {
         binding.conductanceValue.setText(conductance);
         binding.phValue.setText(phLevel);
 
+
+        if (waterQuality.getPh()>=7.5 && waterQuality.getPh()<=8.5){
+            binding.phTick.setImageResource(R.drawable.checked);
+            binding.phTickTvJump.setText("The pH level is in the standard range");
+        }else {
+            binding.phTick.setImageResource(R.drawable.cancel);
+            binding.phTickTvJump.setText("The pH level is not in the standard range");
+        }
+
+        if (waterQuality.getTurbidity()<10){
+            binding.turbidityTick.setImageResource(R.drawable.checked);
+            binding.turbidityTickTvJump.setText("The turbidity level is in the standard range");
+        }else {
+            binding.turbidityTick.setImageResource(R.drawable.cancel);
+            binding.turbidityTickTvJump.setText("The turbidity level is not in the standard range");
+
+        }
+
+
+
         binding.dropDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +88,26 @@ public class WaterBodyActivity extends AppCompatActivity {
                     TransitionManager.beginDelayedTransition(binding.cardView, new AutoTransition());
                     binding.tableLayout.setVisibility(View.VISIBLE);
                     binding.dropDown.setImageResource(R.drawable.baseline_expand_less_24);
+                }
+            }
+        });
+        binding.dropDownJump.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.tableLayoutJump.getVisibility() == View.VISIBLE) {
+                    // The transition of the hiddenView is carried out by the TransitionManager class.
+                    // Here we use an object of the AutoTransition Class to create a default transition
+                    TransitionManager.beginDelayedTransition(binding.beforeYouJumpCard, new AutoTransition());
+                    binding.tableLayoutJump.setVisibility(View.GONE);
+                    binding.dropDownJump.setImageResource(R.drawable.baseline_expand_more_24);
+                }
+
+                // If the CardView is not expanded, set its visibility to
+                // visible and change the expand more icon to expand less.
+                else {
+                    TransitionManager.beginDelayedTransition(binding.beforeYouJumpCard, new AutoTransition());
+                    binding.tableLayoutJump.setVisibility(View.VISIBLE);
+                    binding.dropDownJump.setImageResource(R.drawable.baseline_expand_less_24);
                 }
             }
         });
