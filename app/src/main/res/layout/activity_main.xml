@@ -47,6 +47,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/_20sdp"
         app:cornerRadius="@dimen/_10sdp"
+        android:visibility="gone"
         />
 
     <com.airbnb.lottie.LottieAnimationView

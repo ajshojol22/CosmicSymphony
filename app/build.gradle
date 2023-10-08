@@ -47,7 +47,9 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation 'com.github.vipulasri:timelineview:1.1.5'
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.1.0'
 
 
 

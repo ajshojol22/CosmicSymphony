@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Cosmic Symphony</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYWpzaG9qb2wzNjAiLCJhIjoiY2xtdXZxZHNnMGdscjJxcGVsZXdhcGZlNCJ9.rVQNmDd8SFau5kR6NaxC0w</string>
+    <string name="sunscreen_effects">\u2022 Nanoparticles: Some sunscreens use nanoparticles of zinc oxide and titanium dioxide, which can be of concern. These tiny particles can enter the environment and may have adverse effects on aquatic organisms if they accumulate in high concentrations.\n
+\u2022 Runoff: When people swim in the ocean or engage in water-based activities while wearing sunscreen, the metals can wash off their skin and enter aquatic ecosystems. High concentrations of these metals in water bodies can potentially harm aquatic life.\n
 
+\u2022 Accumulation: While zinc oxide and titanium dioxide are generally considered less toxic to aquatic life than some chemical sunscreen ingredients, they can still accumulate in the environment over time, potentially reaching levels that could be harmful.</string>
+    <string name="todo">\u2022 Use sunscreen with zinc oxide or titanium dioxide as the active ingredients, especially when swimming in or near sensitive aquatic environments.\n
+
+\u2022 Avoid using sunscreens with nanoparticles, as larger particles are less likely to be absorbed by aquatic organisms.\n
+
+\u2022 Be mindful of sunscreen application and try to minimize excess product that could wash off into the water.\n
+
+\u2022 Choose sunscreen products labeled as "reef-safe" or "environmentally friendly" when possible.\n
+
+\u2022 Support initiatives and regulations that aim to reduce the impact of sunscreen on the environment, such as bans on harmful chemical sunscreen ingredients in sensitive areas.</string>
 </resources>

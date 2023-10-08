@@ -18,6 +18,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,6 +62,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -76,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
     WaterBodiesInfo.Location nearestLocation;
 
     Bitmap icon;
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (myLat != 0) {
                     flyToNearestWaterBody();
+                }else {
+                    Toast.makeText(MainActivity.this, "Please turn on your location service to find the nearest water body.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -183,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
                     binding.animationView.cancelAnimation();
                     fadeOutAndHideView(binding.animationView);
                     fadeInAndShowView(binding.mapView);
+                    fadeInAndShowView(binding.nearestWaterBody);
+
                 }
 
                 updateData();

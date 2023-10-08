@@ -2,6 +2,7 @@ package com.jol.cosmicsymphony;
 
 import static com.jol.cosmicsymphony.Constants.waterBodiesInfoList;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -20,12 +21,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class WaterBodyActivity extends AppCompatActivity {
     ActivityWaterBodyBinding binding;
     Bundle bundle;
     String lakeTitle;
     int position;
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +57,16 @@ public class WaterBodyActivity extends AppCompatActivity {
         binding.turbidityValue.setText(turbidity);
         binding.conductanceValue.setText(conductance);
         binding.phValue.setText(phLevel);
+
+        binding.timelineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimelineFragment timelineFragment=new TimelineFragment(lakeTitle);
+                timelineFragment.show(getSupportFragmentManager(), "timelineFragment");
+
+            }
+        });
+
 
 
         binding.shareBtn.setOnClickListener(new View.OnClickListener() {

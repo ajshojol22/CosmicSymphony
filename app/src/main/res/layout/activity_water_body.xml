@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".WaterBodyActivity">
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/timelineBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#7CDAD7"
+        android:src="@drawable/round_timeline_24"
+        />
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -320,7 +332,8 @@
                         android:id="@+id/tableLayoutJump"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:padding="@dimen/_20sdp"
                         android:visibility="gone"
                         >
                         <TableRow
@@ -329,21 +342,23 @@
 
                             <ImageView
                                 android:id="@+id/phTick"
-                                android:layout_width="@dimen/_22sdp"
+                                android:layout_width="0dp"
                                 android:layout_height="@dimen/_22sdp"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
                                 android:layout_gravity="center"
-                                android:src="@drawable/checked" />
+                                android:src="@drawable/checked"
+                                android:layout_column="1"/>
 
                             <TextView
                                 android:id="@+id/phTickTvJump"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="7"
+                                android:layout_weight="8"
                                 android:gravity="center|start"
                                 android:text="@string/app_name"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
+                                android:layout_column="2"
                                 />
 
                         </TableRow>
@@ -353,17 +368,19 @@
 
                             <ImageView
                                 android:id="@+id/turbidityTick"
-                                android:layout_width="@dimen/_22sdp"
+                                android:layout_width="0dp"
                                 android:layout_height="@dimen/_22sdp"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
+                                android:layout_column="1"
                                 android:layout_gravity="center"
                                 tools:src="@drawable/checked" />
 
                             <TextView
                                 android:id="@+id/turbidityTickTvJump"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="7"
+                                android:layout_weight="8"
+                                android:layout_column="2"
                                 android:gravity="center|start"
                                 tools:text="@string/app_name"
                                 android:textColor="@color/black"
