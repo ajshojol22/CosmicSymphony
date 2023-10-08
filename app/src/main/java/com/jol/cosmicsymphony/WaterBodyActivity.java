@@ -2,17 +2,17 @@ package com.jol.cosmicsymphony;
 
 import static com.jol.cosmicsymphony.Constants.waterBodiesInfoList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.jol.cosmicsymphony.adapters.SpeciesAdapter;
 import com.jol.cosmicsymphony.data.WaterBodiesInfo;
-import com.jol.cosmicsymphony.databinding.ActivityMainBinding;
 import com.jol.cosmicsymphony.databinding.ActivityWaterBodyBinding;
 
 import java.util.ArrayList;
@@ -25,25 +25,26 @@ public class WaterBodyActivity extends AppCompatActivity {
     Bundle bundle;
     String lakeTitle;
     int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityWaterBodyBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        bundle=getIntent().getExtras();
-        lakeTitle=bundle.getString("lakeTitle");
-        position=bundle.getInt("position");
+        bundle = getIntent().getExtras();
+        lakeTitle = bundle.getString("lakeTitle");
+        position = bundle.getInt("position");
         binding.toolbarTitle.setText(lakeTitle);
 
-        WaterBodiesInfo info=waterBodiesInfoList.get(position);
-        WaterBodiesInfo.LakeInfo lakeInfo=info.getWater_bodies().get(lakeTitle);
-        WaterBodiesInfo.WaterQuality waterQuality= lakeInfo.getWater_quality();
-        String temperature=waterQuality.getTemp()+"°C";
-        String phLevel=waterQuality.getPh()+"";
-        String conductance=waterQuality.getConductance()+"uS/cm @ 25°C";
-        String turbidity=waterQuality.getTurbidity()+"FNU";
-        String do_level=waterQuality.getDo_value()+"mg/L";
+        WaterBodiesInfo info = waterBodiesInfoList.get(position);
+        WaterBodiesInfo.LakeInfo lakeInfo = info.getWater_bodies().get(lakeTitle);
+        WaterBodiesInfo.WaterQuality waterQuality = lakeInfo.getWater_quality();
+        String temperature = waterQuality.getTemp() + "°C";
+        String phLevel = waterQuality.getPh() + "";
+        String conductance = waterQuality.getConductance() + "uS/cm @ 25°C";
+        String turbidity = waterQuality.getTurbidity() + "FNU";
+        String do_level = waterQuality.getDo_value() + "mg/L";
 
         binding.doValue.setText(do_level);
         binding.tempValue.setText(temperature);
@@ -52,23 +53,45 @@ public class WaterBodyActivity extends AppCompatActivity {
         binding.phValue.setText(phLevel);
 
 
-        if (waterQuality.getPh()>=7.5 && waterQuality.getPh()<=8.5){
+        binding.shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = "Hey there, I am at the " + lakeTitle + ".The pH level of this water body";
+                if (waterQuality.getPh() >= 7.5 && waterQuality.getPh() <= 8.5) {
+                    message = message + " is in the standard level for swimming.";
+                } else {
+                    message = message + " isn't in the standard level for swimming.";
+                }
+                message = message + "And the turbidity level";
+
+                if (waterQuality.getTurbidity() < 10) {
+                    message = message + " is in the standard range.";
+                } else {
+                    message = message + " is not in the standard range.";
+                }
+                message = message + "\nSo you should keep these thing in your mind before coming here.";
+
+                shareToFriends(message);
+            }
+        });
+
+
+        if (waterQuality.getPh() >= 7.5 && waterQuality.getPh() <= 8.5) {
             binding.phTick.setImageResource(R.drawable.checked);
             binding.phTickTvJump.setText("The pH level is in the standard range");
-        }else {
+        } else {
             binding.phTick.setImageResource(R.drawable.cancel);
             binding.phTickTvJump.setText("The pH level is not in the standard range");
         }
 
-        if (waterQuality.getTurbidity()<10){
+        if (waterQuality.getTurbidity() < 10) {
             binding.turbidityTick.setImageResource(R.drawable.checked);
             binding.turbidityTickTvJump.setText("The turbidity level is in the standard range");
-        }else {
+        } else {
             binding.turbidityTick.setImageResource(R.drawable.cancel);
             binding.turbidityTickTvJump.setText("The turbidity level is not in the standard range");
 
         }
-
 
 
         binding.dropDown.setOnClickListener(new View.OnClickListener() {
@@ -115,15 +138,27 @@ public class WaterBodyActivity extends AppCompatActivity {
 
         Set<Map.Entry<String, WaterBodiesInfo.EndangeredSpecies>> set = lakeInfo.getEndangered_species().entrySet();
 
-        List<String> speciesList=new ArrayList<>();
+        List<String> speciesList = new ArrayList<>();
 
         for (Map.Entry<String, WaterBodiesInfo.EndangeredSpecies> me : set) {
             speciesList.add(me.getKey());
-            Log.wtf("Key",me.getKey());
+            Log.wtf("Key", me.getKey());
         }
-        SpeciesAdapter adapter=new SpeciesAdapter(WaterBodyActivity.this,speciesList,lakeInfo);
+        SpeciesAdapter adapter = new SpeciesAdapter(WaterBodyActivity.this, speciesList, lakeInfo);
         binding.viewPager.setAdapter(adapter);
 
 
     }
+
+    void shareToFriends(String shareBody) {
+        /*Create an ACTION_SEND Intent*/
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        String friendlyReminder = "A Friendly Reminder";
+        String shareAbout = "Share information about " + lakeTitle;
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareAbout);
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(intent, friendlyReminder));
+    }
+
 }

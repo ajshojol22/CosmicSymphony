@@ -22,6 +22,16 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_22sdp"
             tools:text="Mississippi River" />
+
+        <ImageView
+            android:id="@+id/shareBtn"
+            android:clickable="true"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/baseline_share_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.core.widget.NestedScrollView

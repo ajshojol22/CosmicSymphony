@@ -18,7 +18,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     MapboxMap mapboxMap;
     double currentZoom = 16.0;
-    double myLat=0, myLng=0;
+    double myLat = 0, myLng = 0;
     private static final int REQUEST_LOCATION = 1;
     WaterBodiesInfo.Location nearestLocation;
 
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         binding.nearestWaterBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (myLat!=0){
+                if (myLat != 0) {
                     flyToNearestWaterBody();
                 }
             }
@@ -199,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void flyToNearestWaterBody() {
         CameraAnimationsPlugin camera = CameraAnimationsUtils.getCamera(binding.mapView);
-        Point point=Point.fromLngLat(nearestLocation.getLng(), nearestLocation.getLat());
+        Point point = Point.fromLngLat(nearestLocation.getLng(), nearestLocation.getLat());
         camera.flyTo(
                 new CameraOptions.Builder()
                         .zoom(17.0)
@@ -220,42 +219,49 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         } else {
-            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (locationGPS != null) {
-                myLat = locationGPS.getLatitude();
-                myLng = locationGPS.getLongitude();
-                Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.person);
-                icon = bmp.copy(Bitmap.Config.ARGB_8888, true);
+            List<String> providers = locationManager.getProviders(true);
+            Location bestLocation = null;
+            for (String provider : providers) {
+                Location l = locationManager.getLastKnownLocation(provider);
+                if (l == null) {
+                    continue;
+                }
+                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    bestLocation = l;
+                    myLat = bestLocation.getLatitude();
+                    myLng = bestLocation.getLongitude();
+                    Bitmap bmp = BitmapFactory.decodeResource(getResources(),
+                            R.drawable.person);
+                    icon = bmp.copy(Bitmap.Config.ARGB_8888, true);
 
-                Point point=Point.fromLngLat(myLng,myLat);
-                CameraAnimationsPlugin camera = CameraAnimationsUtils.getCamera(binding.mapView);
-                camera.easeTo(
-                        new CameraOptions.Builder()
-                                .zoom(currentZoom)
-                                .center(point)
-                                .build(),
-                        new MapAnimationOptions.Builder()
-                                .interpolator(new AccelerateDecelerateInterpolator())
-                                .duration(1000).build()
-                );
+                    Point point = Point.fromLngLat(myLng, myLat);
+                    CameraAnimationsPlugin camera = CameraAnimationsUtils.getCamera(binding.mapView);
+                    camera.easeTo(
+                            new CameraOptions.Builder()
+                                    .zoom(currentZoom)
+                                    .center(point)
+                                    .build(),
+                            new MapAnimationOptions.Builder()
+                                    .interpolator(new AccelerateDecelerateInterpolator())
+                                    .duration(1000).build()
+                    );
 
-                PointAnnotationOptions options = new PointAnnotationOptions()
-                        .withIconImage(icon)
-                        .withIconSize(0.1)
-                        .withIconAnchor(IconAnchor.BOTTOM)
-                        .withPoint(point);
+                    PointAnnotationOptions options = new PointAnnotationOptions()
+                            .withIconImage(icon)
+                            .withIconSize(0.1)
+                            .withIconAnchor(IconAnchor.BOTTOM)
+                            .withPoint(point);
 
-                AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(binding.mapView);
-                PointAnnotationManager manager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, new AnnotationConfig());
-                manager.setIconKeepUpright(true);
-                manager.create(options);
+                    AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(binding.mapView);
+                    PointAnnotationManager manager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, new AnnotationConfig());
+                    manager.setIconKeepUpright(true);
+                    manager.create(options);
 
 
-
-            } else {
-                Toast.makeText(this, "Unable to find location.", Toast.LENGTH_SHORT).show();
+                }
             }
+
+
         }
     }
 
@@ -312,7 +318,6 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 }
             });
-
 
 
             GesturesUtils.getGestures(binding.mapView)
