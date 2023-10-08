@@ -4,7 +4,7 @@
 Map view
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/53313033/273463232-40d25606-a3ba-46ec-83d4-8f2305142ba9.jpg"
   width="500" height="600"
-  ><br>
+  >
 Details
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/53313033/273463260-30068fe0-345a-445f-b88e-09c4be840e2f.jpg"
      width="500" height="600"
